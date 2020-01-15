@@ -870,8 +870,8 @@ int rf_zmq_send_timed_multi(void*  h,
     pthread_mutex_unlock(&handler->tx_config_mutex);
 
     rf_zmq_info(handler->id, "Tx %d samples (%d B)\n", nsamples, nbytes);
-    fprintf(stderr, "id Tx %d samples (%d B)\n", nsamples, nbytes);
-    fprintf(stderr, "WE ARE HERE 1 !!!\n");
+    fprintf(stderr, "handler id is %d, Tx %d samples (%d B)\n", handler->id, nsamples, nbytes);
+    //fprintf(stderr, "WE ARE HERE 1 !!!\n");
 
     // return if transmitter is switched off
     if (strlen(handler->tx_port) == 0) {
@@ -898,7 +898,7 @@ int rf_zmq_send_timed_multi(void*  h,
                 "[zmq] Error: tx time is %.3f ms in the past (%" PRIu64 " < %" PRIu64 ")\n",
                 -1000.0 * num_tx_gap_samples / handler->base_srate,
                 tx_ts,
-                NSAMPLES2NBYTES(handler->transmitter[0].nsamples));
+                handler->transmitter[0].nsamples);
         goto clean_exit;
       }
     }
@@ -936,7 +936,7 @@ int rf_zmq_send_timed_multi(void*  h,
         }
 
         int n = rf_zmq_tx_baseband(&handler->transmitter[i], buf, nsamples_baseband);
-        fprintf(stderr, "WE ARE HERE 2 !!!\n");
+        
         if (n == SRSLTE_ERROR) {
           goto clean_exit;
         }
