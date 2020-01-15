@@ -179,6 +179,7 @@ int rf_zmq_tx_align(rf_zmq_tx_t* q, uint64_t ts)
 
   if (nsamples > 0) {
     rf_zmq_info(q->id, " - Detected Tx gap of %d samples.\n", nsamples);
+    fprintf(stderr, " - Detected Tx gap of %d samples.\n", nsamples );
     _rf_zmq_tx_baseband(q, q->zeros, (uint32_t)nsamples);
   }
 
