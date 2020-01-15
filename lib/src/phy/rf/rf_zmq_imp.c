@@ -896,7 +896,7 @@ int rf_zmq_send_timed_multi(void*  h,
                 "[zmq] Error: tx time is %.3f ms in the past (%" PRIu64 " < %" PRIu64 ")\n",
                 -1000.0 * num_tx_gap_samples / handler->base_srate,
                 tx_ts,
-                handler->transmitter[0].nsamples);
+                NSAMPLES2NBYTES(handler->transmitter[0].nsamples));
         goto clean_exit;
       }
     }
