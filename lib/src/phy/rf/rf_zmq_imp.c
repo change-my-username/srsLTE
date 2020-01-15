@@ -910,6 +910,7 @@ int rf_zmq_send_timed_multi(void*  h,
         cf_t* buf = (handler->decim_factor != 1) ? handler->buffer_tx : buffers[i];
 
         // Interpolate if required
+        rf_zmq_info(handler->id, " decim_factor is  %d\n", handler->decim_factor);
         if (handler->decim_factor != 1) {
           rf_zmq_info(handler->id,
                       "  - re-adjust bytes due to %dx interpolation %d --> %d samples)\n",
