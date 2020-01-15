@@ -870,7 +870,7 @@ int rf_zmq_send_timed_multi(void*  h,
     pthread_mutex_unlock(&handler->tx_config_mutex);
 
     rf_zmq_info(handler->id, "Tx %d samples (%d B)\n", nsamples, nbytes);
-    fprintf(stderr, "handler id is %d, Tx %d samples (%d B)\n", handler->id, nsamples, nbytes);
+    fprintf(stderr, "handler id is %s, Tx %d samples (%d B)\n", handler->id, nsamples, nbytes);
     //fprintf(stderr, "WE ARE HERE 1 !!!\n");
 
     // return if transmitter is switched off
