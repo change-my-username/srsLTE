@@ -870,6 +870,8 @@ int rf_zmq_send_timed_multi(void*  h,
     pthread_mutex_unlock(&handler->tx_config_mutex);
 
     rf_zmq_info(handler->id, "Tx %d samples (%d B)\n", nsamples, nbytes);
+    fprintf(stderr, "id Tx %d samples (%d B)\n", nsamples, nbytes);
+    fprintf(stderr, "WE ARE HERE 1 !!!\n");
 
     // return if transmitter is switched off
     if (strlen(handler->tx_port) == 0) {
@@ -934,6 +936,7 @@ int rf_zmq_send_timed_multi(void*  h,
         }
 
         int n = rf_zmq_tx_baseband(&handler->transmitter[i], buf, nsamples_baseband);
+        fprintf(stderr, "WE ARE HERE 2 !!!\n");
         if (n == SRSLTE_ERROR) {
           goto clean_exit;
         }
