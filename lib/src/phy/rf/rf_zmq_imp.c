@@ -79,7 +79,7 @@ const char zmq_devname[4] = "zmq";
 
 void rf_zmq_info(char* id, const char* format, ...)
 {
-#if VERBOSE
+//#if VERBOSE
   struct timeval t;
   gettimeofday(&t, NULL);
   va_list args;
@@ -87,9 +87,9 @@ void rf_zmq_info(char* id, const char* format, ...)
   printf("[%s@%02ld.%06ld] ", id ? id : "zmq", t.tv_sec % 10, t.tv_usec);
   vprintf(format, args);
   va_end(args);
-#else  /* VERBOSE */
+//#else  /* VERBOSE */
   // Do nothing
-#endif /* VERBOSE */
+//#endif /* VERBOSE */
 }
 
 void rf_zmq_error(char* id, const char* format, ...)
@@ -870,7 +870,7 @@ int rf_zmq_send_timed_multi(void*  h,
     pthread_mutex_unlock(&handler->tx_config_mutex);
 
     rf_zmq_info(handler->id, "Tx %d samples (%d B)\n", nsamples, nbytes);
-    fprintf(stderr, "Tx %d samples (%d B), secs is %d, frac_secs is %.3f\n", nsamples, nbytes, secs, frac_secs);
+    //fprintf(stderr, "Tx %d samples (%d B), secs is %d, frac_secs is %.3f\n", nsamples, nbytes, secs, frac_secs);
     //fprintf(stderr, "WE ARE HERE 1 !!!\n");
 
     // return if transmitter is switched off
